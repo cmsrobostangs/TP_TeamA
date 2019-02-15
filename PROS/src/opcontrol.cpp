@@ -1,5 +1,4 @@
 #include "okapi/api.hpp"
-#include "config.h"
 using namespace okapi;
 
 // Chassis Controller - lets us drive the robot around with open- or closed-loop control
