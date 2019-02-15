@@ -1,4 +1,5 @@
 #include "okapi/api.hpp"
+#include "config.h"
 using namespace okapi;
 
 // Chassis Controller - lets us drive the robot around with open- or closed-loop control
@@ -20,11 +21,11 @@ void opcontrol() {
 	ControllerButton intakeOutButton(ControllerDigital::R2);
 
 	Motor intakeMotor = 18_rmtr;
-  Motor capFlipperMotor = 8_rmtr;
+  Motor capFlipperMotor = 8_mtr;
 
   while (true) {
-    // Tank drive with left and right sticks
-    drive.tank(controller.getAnalog(ControllerAnalog::leftY),controller.getAnalog(ControllerAnalog::rightY));
+    // Tank drive with left and right sticks and deadband of 5
+    drive.tank(controller.getAnalog(ControllerAnalog::leftY),controller.getAnalog(ControllerAnalog::rightY),5);
 
 		if (capFlipperUpButton.isPressed()) {
 			intakeMotor.move_voltage(-127);

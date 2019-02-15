@@ -6,8 +6,8 @@ using namespace okapi;
 
 ADIButton shooterLoadedSwitch('A');
 ControllerButton launcherButton(ControllerDigital::L2);
-Motor frontLauncherMotor = 5_rmtr;
-Motor rearLauncherMotor = 11_rmtr;
+Motor frontLauncherMotor(5,false,AbstractMotor::gearset::red);
+Motor rearLauncherMotor(11,false,AbstractMotor::gearset::red);
 
 void autoLoad_fn(void* param) {
   while(true){
