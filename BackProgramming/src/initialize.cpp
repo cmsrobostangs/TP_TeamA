@@ -56,7 +56,7 @@ void on_center_button() {
  */
 void initialize() {
 	pros::lcd::initialize();
-	pros::lcd::set_text(1, "Hello Steve!");
+	pros::lcd::set_text(1, "Hello Vex!");
 	pros::lcd::register_btn1_cb(on_center_button);
 	pros::Task my_task (autoLoad_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,TASK_STACK_DEPTH_DEFAULT, "AutoLoad Task");
 }

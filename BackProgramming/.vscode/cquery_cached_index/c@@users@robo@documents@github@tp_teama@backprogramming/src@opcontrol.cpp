@@ -11,9 +11,9 @@ void opcontrol() {
   auto chassis = ChassisControllerFactory::create(
     {20, 13}, {-19, -12},
     AbstractMotor::gearset::green,
-    {4_in,14_in}
+    {10_cm, 39.2_cm}
   );
-
+  
   // Arm related objects
   ControllerButton capFlipperUpButton(ControllerDigital::A);
   ControllerButton capFlipperDownButton(ControllerDigital::B);
