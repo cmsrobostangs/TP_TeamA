@@ -3,9 +3,10 @@
 using namespace okapi;
 
 ADIButton shooterLoadedSwitch('A');
-pros::Controller master(pros::E_CONTROLLER_MASTER);
+Controller controller;
 Motor frontLauncherMotor(5,false,AbstractMotor::gearset::red);
 Motor rearLauncherMotor(11,false,AbstractMotor::gearset::red);
+ControllerButton launcherButton(ControllerDigital::L2);
 
 void autoLoad_fn(void* param) {
   while(true){
@@ -14,7 +15,7 @@ void autoLoad_fn(void* param) {
 			rearLauncherMotor.move_voltage(127);
 		  pros::Task::delay(10);
 		}
-		if(!pros::competition::is_autonomous() && !master.get_digital(DIGITAL_L2)){
+		if(!pros::competition::is_autonomous() && !launcherButton.isPressed()){
 			pros::Task::delay(250);
 			frontLauncherMotor.move_voltage(0);
 			rearLauncherMotor.move_voltage(0);
