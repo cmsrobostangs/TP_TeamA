@@ -23,16 +23,16 @@ Motor intakeMotor = 18_rmtr;
 
  void autonomous() {
    intakeMotor.move(-127);
-   drive.moveDistance(48_in); // movng forward 39
+   drive.moveDistance(46_in); // movng forward 39
    pros::Task::delay(100);
-   drive.moveDistance(-16_in);
+   drive.moveDistance(-14_in);
    drive.turnAngle(-90_deg); // turn left 90 degrees or at an right angle
    pros::Task::delay(100);
    drive.moveDistance(16_in); // moving forward 16 inches
    pros::Task::delay(100);
-   drive.turnAngle(90);// turn at a left angle
+   drive.turnAngle(90_deg);// turn at a left angle
    pros::Task::delay(100);
-   drive.moveDistance(16_in); // moving forward the sqare root of 1600 inches
+   drive.moveDistance(22_in); // moving forward the sqare root of 1600 inches
    pros::Task::delay(100);
    drive.moveDistance(-12);
    pros::Task::delay(100);
