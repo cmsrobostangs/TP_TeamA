@@ -6,7 +6,7 @@ using namespace okapi;
 void opcontrol() {
   // Joystick to read analog values for tank or arcade control
   // Master controller by default
-  pros::Controller master(pros::E_CONTROLLER_MASTER);
+  Controller controller;
 
   auto chassis = ChassisControllerFactory::create(
     {20, 13}, {-19, -12},
@@ -24,22 +24,22 @@ void opcontrol() {
   Motor capFlipperMotor = 8_mtr;
 
   while (true) {
-    chassis.tank(master.get_analog(ANALOG_LEFT_Y),master.get_analog(ANALOG_RIGHT_Y));
+    chassis.tank(controller.getAnalog(ControllerAnalog::leftY),controller.getAnalog(ControllerAnalog::rightY));
 
-		if (master.get_digital(DIGITAL_R1)) {
-			intakeMotor.move_voltage(-127);
-		} else if (master.get_digital(DIGITAL_R2)) {
-			intakeMotor.move_voltage(127);
+		if(intakeInButton.isPressed()) {
+			intakeMotor.move(-127);
+		} else if (intakeOutButton.isPressed()) {
+			intakeMotor.move(127);
 		} else {
-			intakeMotor.move_voltage(0);
+			intakeMotor.move(0);
 		}
 
-		if (master.get_digital(DIGITAL_A)) {
-			intakeMotor.move_voltage(-127);
-		} else if (master.get_digital(DIGITAL_B)) {
-			intakeMotor.move_voltage(127);
+		if (capFlipperUpButton.isPressed()) {
+			intakeMotor.move(-127);
+		} else if (capFlipperDownButton.isPressed()) {
+			intakeMotor.move(127);
 		} else {
-			intakeMotor.move_voltage(0);
+			intakeMotor.move(0);
 		}
 
     pros::Task::delay(10);

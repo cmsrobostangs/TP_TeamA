@@ -4,33 +4,33 @@ using namespace okapi;
 
 ADIButton shooterLoadedSwitch('A');
 Controller controller;
-Motor frontLauncherMotor(5,false,AbstractMotor::gearset::red);
-Motor rearLauncherMotor(11,false,AbstractMotor::gearset::red);
+pros::Motor frontLauncherMotor (5, pros::E_MOTOR_GEARSET_36, false);
+pros::Motor rearLauncherMotor (11, pros::E_MOTOR_GEARSET_36, false);
 ControllerButton launcherButton(ControllerDigital::L2);
 
 void autoLoad_fn(void* param) {
   while(true){
 		while(shooterLoadedSwitch.isPressed()){
-			frontLauncherMotor.move_voltage(127);
-			rearLauncherMotor.move_voltage(127);
+			frontLauncherMotor.move(127);
+			rearLauncherMotor.move(127);
 		  pros::Task::delay(10);
 		}
 		if(!pros::competition::is_autonomous() && !launcherButton.isPressed()){
 			pros::Task::delay(250);
-			frontLauncherMotor.move_voltage(0);
-			rearLauncherMotor.move_voltage(0);
+			frontLauncherMotor.move(0);
+			rearLauncherMotor.move(0);
 			frontLauncherMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 			rearLauncherMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 		}
 		else if(pros::competition::is_autonomous() && pros::c::task_notify_take(true, TIMEOUT_MAX)){
-			frontLauncherMotor.move_voltage(0);
-			rearLauncherMotor.move_voltage(0);
+			frontLauncherMotor.move(0);
+			rearLauncherMotor.move(0);
 			frontLauncherMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 			rearLauncherMotor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 		}
 		else{
-			frontLauncherMotor.move_voltage(127);
-			rearLauncherMotor.move_voltage(127);
+			frontLauncherMotor.move(127);
+			rearLauncherMotor.move(127);
 		}
 
 		pros::Task::delay(10);
