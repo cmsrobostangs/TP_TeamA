@@ -16,17 +16,18 @@ using namespace okapi;
  auto drive = ChassisControllerFactory::create(
    {20, 13}, {-19, -12},
    AbstractMotor::gearset::green,
-   {4_in, 10.5_in}
+   {10_cm, 36.5_cm}
  );
 
 Motor intakeMotor = 18_rmtr;
 
  void autonomous() {
    intakeMotor.move(-127);
-   drive.moveDistance(54_in);
+   drive.moveDistance(44_in);
    drive.moveDistance(-1_in);
    pros::Task::delay(300);
    intakeMotor.move(0);
    drive.moveDistance(-40.5_in);
-   drive.turnAngle(67.75_deg);
- }
+   drive.turnAngle(90_deg);
+   drive.moveDistance(26);
+   }
