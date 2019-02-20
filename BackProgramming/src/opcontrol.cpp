@@ -2,26 +2,15 @@
 
 using namespace okapi;
 
-// Chassis Controller - lets us drive the robot around with open- or closed-loop control
+Controller *controller;
+auto *chassis;
+ControllerButton *intakeInButton;
+ControllerButton *intakeOutButton;
+ControllerButton *capFlipperUpButton;
+ControllerButton *capFlipperDownButton;
+
+
 void opcontrol() {
-  // Joystick to read analog values for tank or arcade control
-  // Master controller by default
-  Controller controller;
-
-  auto chassis = ChassisControllerFactory::create(
-    {20, 13}, {-19, -12},
-    AbstractMotor::gearset::green,
-    {10_cm, 39.2_cm}
-  );
-  
-  // Arm related objects
-  ControllerButton capFlipperUpButton(ControllerDigital::A);
-  ControllerButton capFlipperDownButton(ControllerDigital::B);
-	ControllerButton intakeInButton(ControllerDigital::R1);
-	ControllerButton intakeOutButton(ControllerDigital::R2);
-
-	Motor intakeMotor = 18_rmtr;
-  Motor capFlipperMotor = 8_mtr;
 
   while (true) {
     chassis.tank(controller.getAnalog(ControllerAnalog::leftY),controller.getAnalog(ControllerAnalog::rightY));

@@ -2,11 +2,13 @@
 
 using namespace okapi;
 
-ADIButton shooterLoadedSwitch('A');
-Controller controller;
-pros::Motor frontLauncherMotor (5, pros::E_MOTOR_GEARSET_36, false);
-pros::Motor rearLauncherMotor (11, pros::E_MOTOR_GEARSET_36, false);
-ControllerButton launcherButton(ControllerDigital::L2);
+
+Controller *controller;
+auto *chassis;
+Motor *rearLauncherMotor;
+Motor *frontLauncherMotor;
+ADIButton *shooterLoadedSwitch('A');
+ControllerButton *launcherButton;
 
 void autoLoad_fn(void* param) {
   while(true){
@@ -15,7 +17,7 @@ void autoLoad_fn(void* param) {
 			rearLauncherMotor.move(127);
 		  pros::Task::delay(10);
 		}
-		if(!pros::competition::is_autonomous() && !launcherButton.isPressed()){
+		if(!pros::competition::is_autonomous() && !launcherButton->isPressed()){
 			pros::Task::delay(250);
 			frontLauncherMotor.move(0);
 			rearLauncherMotor.move(0);
@@ -39,9 +41,7 @@ void autoLoad_fn(void* param) {
 }
 
 void on_center_button() {
-	static bool pressed = false;
-	pressed = !pressed;
-	if (pressed) {
+	if (launcherButton.isPressed()) {
 		pros::lcd::set_text(2, "I was pressed!");
 	} else {
 		pros::lcd::clear_line(2);

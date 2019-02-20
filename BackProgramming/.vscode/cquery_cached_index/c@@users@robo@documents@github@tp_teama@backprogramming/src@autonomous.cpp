@@ -12,34 +12,28 @@ using namespace okapi;
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-
- auto drive = ChassisControllerFactory::create(
-   {20, 13}, {-19, -12},
-   AbstractMotor::gearset::green,
-   {10_cm, 39.2_cm}
- );
-
-Motor intakeMotor = 18_rmtr;
+ auto *chassis;
+ Motor *intakeMotor;
 
  void autonomous() {
    intakeMotor.move(-127);
-   drive.moveDistance(46_in); // movng forward 39
+   chassis.moveDistance(46_in); // movng forward 39
    pros::Task::delay(100);
-   drive.moveDistance(-14_in);
-   drive.turnAngle(-90_deg); // turn left 90 degrees or at an right angle
+   chassis.moveDistance(-14_in);
+   chassis.turnAngle(-90_deg); // turn left 90 degrees or at an right angle
    pros::Task::delay(100);
-   drive.moveDistance(16_in); // moving forward 16 inches
+   chassis.moveDistance(16_in); // moving forward 16 inches
    pros::Task::delay(100);
-   drive.turnAngle(90_deg);// turn at a left angle
+   chassis.turnAngle(90_deg);// turn at a left angle
    pros::Task::delay(100);
-   drive.moveDistance(22_in); // moving forward the sqare root of 1600 inches
+   chassis.moveDistance(22_in); // moving forward the sqare root of 1600 inches
    pros::Task::delay(100);
-   drive.moveDistance(-12);
+   chassis.moveDistance(-12);
    pros::Task::delay(100);
-   drive.turnAngle(90_deg); // turn right
+   chassis.turnAngle(90_deg); // turn right
    pros::Task::delay(100);
    intakeMotor.move(0);
-   drive.moveDistance(45_in);
+   chassis.moveDistance(45_in);
    // pros::Task::delay(300);
 
  }
