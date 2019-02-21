@@ -17,16 +17,29 @@ using namespace okapi;
 
  void autonomous() {
    intakeMotor.move(-127);
+<<<<<<< HEAD
    chassis.moveDistance(46_in); // movng forward 39
    pros::Task::delay(100);
    chassis.moveDistance(-14_in);
    chassis.turnAngle(-90_deg); // turn left 90 degrees or at an right angle
+=======
+   drive.moveDistance(48_in); // movng forward 39
+   pros::Task::delay(100);
+   drive.moveDistance(-16_in);
+   drive.turnAngle(-90_deg); // turn left 90 degrees or at an right angle
+>>>>>>> parent of ddd0fb3... PROS auton
    pros::Task::delay(100);
    chassis.moveDistance(16_in); // moving forward 16 inches
    pros::Task::delay(100);
+<<<<<<< HEAD
    chassis.turnAngle(90_deg);// turn at a left angle
    pros::Task::delay(100);
    chassis.moveDistance(22_in); // moving forward the sqare root of 1600 inches
+=======
+   drive.turnAngle(90);// turn at a left angle
+   pros::Task::delay(100);
+   drive.moveDistance(16_in); // moving forward the sqare root of 1600 inches
+>>>>>>> parent of ddd0fb3... PROS auton
    pros::Task::delay(100);
    chassis.moveDistance(-12);
    pros::Task::delay(100);
