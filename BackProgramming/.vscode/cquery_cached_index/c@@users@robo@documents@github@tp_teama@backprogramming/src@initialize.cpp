@@ -3,12 +3,11 @@
 using namespace okapi;
 
 
-Controller *controller;
-auto *chassis;
-Motor *rearLauncherMotor;
-Motor *frontLauncherMotor;
-ADIButton *shooterLoadedSwitch('A');
-ControllerButton *launcherButton;
+Controller controller;
+Motor rearLauncherMotor = (11, pros::E_MOTOR_GEARSET_36, false);
+Motor frontLauncherMotor = (5, pros::E_MOTOR_GEARSET_36, false);
+ADIButton shooterLoadedSwitch('A');
+ControllerButton launcherButton(ControllerDigital::L2);
 
 void autoLoad_fn(void* param) {
   while(true){
@@ -17,7 +16,7 @@ void autoLoad_fn(void* param) {
 			rearLauncherMotor.move(127);
 		  pros::Task::delay(10);
 		}
-		if(!pros::competition::is_autonomous() && !launcherButton->isPressed()){
+		if(!pros::competition::is_autonomous() && !launcherButton.isPressed()){
 			pros::Task::delay(250);
 			frontLauncherMotor.move(0);
 			rearLauncherMotor.move(0);
