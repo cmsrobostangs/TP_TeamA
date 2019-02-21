@@ -18,16 +18,15 @@ using namespace okapi;
    AbstractMotor::gearset::green,
    {4_in, 10.5_in}
  );
- Motor intakeMotor = 18_rmtr;
+
+Motor intakeMotor = 18_rmtr;
 
  void autonomous() {
-   intakeMotor.move_voltage(-127);
+   intakeMotor.move(-127);
    drive.moveDistance(54_in);
    drive.moveDistance(-1_in);
    pros::Task::delay(300);
-   intakeMotor.move_voltage(0);
+   intakeMotor.move(0);
    drive.moveDistance(-40.5_in);
    drive.turnAngle(67.75_deg);
-   drive.moveDistance(1_in);
-   pros::Task::delay(250);
  }

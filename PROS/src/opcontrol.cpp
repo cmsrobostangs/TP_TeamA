@@ -27,19 +27,19 @@ void opcontrol() {
     chassis.tank(controller.getAnalog(ControllerAnalog::leftY),controller.getAnalog(ControllerAnalog::rightY));
 
 		if(intakeInButton.isPressed()) {
-			intakeMotor.move_voltage(-127);
+			intakeMotor.move(-127);
 		} else if (intakeOutButton.isPressed()) {
-			intakeMotor.move_voltage(127);
+			intakeMotor.move(127);
 		} else {
-			intakeMotor.move_voltage(0);
+			intakeMotor.move(0);
 		}
 
 		if (capFlipperUpButton.isPressed()) {
-			intakeMotor.move_voltage(-127);
+			intakeMotor.move(-127);
 		} else if (capFlipperDownButton.isPressed()) {
-			intakeMotor.move_voltage(127);
+			intakeMotor.move(127);
 		} else {
-			intakeMotor.move_voltage(0);
+			intakeMotor.move(0);
 		}
 
     pros::Task::delay(10);
